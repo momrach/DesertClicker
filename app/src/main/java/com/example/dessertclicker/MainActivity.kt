@@ -61,7 +61,7 @@ import com.example.dessertclicker.ui.theme.DessertClickerTheme
 import com.example.dessertclicker.model.Dessert
 import com.example.dessertclicker.ui.DessertViewModel
 
-val dessertViewModel : DessertViewModel = DessertViewModel()
+//val dessertViewModel : DessertViewModel = DessertViewModel()
 
 class MainActivity : ComponentActivity() {
 
@@ -70,34 +70,34 @@ class MainActivity : ComponentActivity() {
         setContent {
             DessertClickerTheme {
                 //DessertClickerApp(desserts = dessertList)
-                DessertClickerApp(dessertViewModel)
+                DessertClickerApp()
             }
         }
     }
 }
 
-/**
- * Determine which dessert to show.
- */
-fun determineDessertToShow(
-    desserts: List<Dessert>,
-    dessertsSold: Int
-): Dessert {
-    var dessertToShow = desserts.first()
-    for (dessert in desserts) {
-        if (dessertsSold >= dessert.startProductionAmount) {
-            dessertToShow = dessert
-        } else {
-            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
-            // you'll start producing more expensive desserts as determined by startProductionAmount
-            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
-            // than the amount sold.
-            break
-        }
-    }
-
-    return dessertToShow
-}
+///**
+// * Determine which dessert to show.
+// */
+//fun determineDessertToShow(
+//    desserts: List<Dessert>,
+//    dessertsSold: Int
+//): Dessert {
+//    var dessertToShow = desserts.first()
+//    for (dessert in desserts) {
+//        if (dessertsSold >= dessert.startProductionAmount) {
+//            dessertToShow = dessert
+//        } else {
+//            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
+//            // you'll start producing more expensive desserts as determined by startProductionAmount
+//            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
+//            // than the amount sold.
+//            break
+//        }
+//    }
+//
+//    return dessertToShow
+//}
 
 /**
  * Share desserts sold information using ACTION_SEND intent
@@ -129,7 +129,7 @@ private fun shareSoldDessertsInformation(intentContext: Context, dessertsSold: I
 @Composable
 private fun DessertClickerApp(
     //desserts: List<Dessert>
-    dessertViewModel: DessertViewModel
+    dessertViewModel: DessertViewModel = viewModel()
 ) {
 
 //    var revenue by remember { mutableStateOf(0) }
